@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>consul</id>
+    <version>0.5.0</version>
+    <title>Consul</title>
+    <authors>Mitchell Hashimoto, Armon Dadgar, HashiCorp</authors>
+    <owners>mirthy, cleung2010</owners>
+    <licenseUrl>https://github.com/hashicorp/consul/blob/master/LICENSE</licenseUrl>
+    <projectUrl>http://www.consul.io</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable.
+Uses the winsw service wrapper to run as a service, MIT license located here:
+https://github.com/kohsuke/winsw/blob/master/LICENSE.txt</description>
+    <summary>Consul is a tool for service discovery, monitoring and configuration.</summary>
+    <iconUrl></iconUrl>
+    <releaseNotes>Version 0.5.0</releaseNotes>
+    <copyright>HashiCorp 2014</copyright>
+    <tags>consul service consul.io</tags>
+  </metadata>
+</package>
