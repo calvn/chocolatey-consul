@@ -13,7 +13,7 @@
 Uses the winsw service wrapper to run as a service, MIT license located here:
 https://github.com/kohsuke/winsw/blob/master/LICENSE.txt</description>
     <summary>Consul is a tool for service discovery, monitoring and configuration.</summary>
-    <iconUrl></iconUrl>
+    <iconUrl>https://cdn.rawgit.com/cleung2010/chocolatey-packages/f11a10757086560d99f94d563e20d0c64111b292/icons/consul.png</iconUrl>
     <releaseNotes>Version 0.5.0</releaseNotes>
     <copyright>HashiCorp 2014</copyright>
     <tags>consul service consul.io</tags>
