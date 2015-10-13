@@ -13,7 +13,7 @@ build_script:
   - download.bat
   - cpack consul.nuspec
 
-test:
+test_script:
   - cinst consul -source %APPVEYOR_BUILD_FOLDER%\consul
   - cuninst consul
 
