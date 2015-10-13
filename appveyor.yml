@@ -1,0 +1,12 @@
+version: "{build}"
+
+test: off
+deploy: off
+
+install:
+  - cinst wget
+
+build_script:
+  - cd %APPVEYOR_BUILD_FOLDER%\consul
+  - cmd: download.bat
+  - cmd: cpack consul.nuspec
