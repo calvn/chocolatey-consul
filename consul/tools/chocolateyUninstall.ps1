@@ -10,8 +10,9 @@ if ($service) {
 
 	$service = Get-WmiObject -Class Win32_Service -Filter "Name='consul'"
 	$service.delete() | Out-Null
-
 }
+
+SchTasks.exe /Delete /F /TN "ConsulLogrotate" 2>&1 | Out-Null
 
 Write-Host "Removing C:\ProgramData\consul\ ..."
 takeown /f "C:\ProgramData\consul\" /a /r /d Y | Out-Null

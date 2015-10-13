@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>consul</id>
-    <version>0.5.0</version>
+    <version>0.5.2</version>
     <title>Consul</title>
     <authors>Mitchell Hashimoto, Armon Dadgar, HashiCorp</authors>
     <owners>mirthy, cleung2010</owners>
@@ -14,7 +14,7 @@ Uses the winsw service wrapper to run as a service, MIT license located here:
 https://github.com/kohsuke/winsw/blob/master/LICENSE.txt</description>
     <summary>Consul is a tool for service discovery, monitoring and configuration.</summary>
     <iconUrl>https://cdn.rawgit.com/cleung2010/chocolatey-packages/f11a10757086560d99f94d563e20d0c64111b292/icons/consul.png</iconUrl>
-    <releaseNotes>Version 0.5.0</releaseNotes>
+    <releaseNotes>Version 0.5.2</releaseNotes>
     <copyright>HashiCorp 2014</copyright>
     <tags>consul service consul.io</tags>
   </metadata>
