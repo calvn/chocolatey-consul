@@ -4,9 +4,7 @@ platform:
   - x64
 
 install:
-  - cinst wget
   - appveyor DownloadFile http://curl.haxx.se/ca/cacert.pem -FileName C:\cacert.pem
-  - set SSL_CERT_FILE=C:\cacert.pem
 
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%\consul
@@ -16,5 +14,8 @@ build_script:
 test_script:
   - cinst consul -source %APPVEYOR_BUILD_FOLDER%\consul
   - cuninst consul
+
+artifacts:
+  - path: '**\*.nupkg'
 
 deploy: off

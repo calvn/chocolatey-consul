@@ -4,8 +4,8 @@ pushd binaries
 attrib +r +s .gitignore
 del /f /q *
 attrib -r -s .gitignore
-wget --no-check-certificate -O 0.5.2_windows_386.zip https://dl.bintray.com/mitchellh/consul/0.5.2_windows_386.zip
-wget --no-check-certificate -O 0.5.2_web_ui.zip https://dl.bintray.com/mitchellh/consul/0.5.2_web_ui.zip
-wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.5.2_SHA256SUMS
-wget --no-check-certificate -O nssm-2.24.zip https://nssm.cc/release/nssm-2.24.zip
+curl -k -fsSL https://dl.bintray.com/mitchellh/consul/0.5.2_windows_386.zip > 0.5.2_windows_386.zip
+curl -k -fsSL https://dl.bintray.com/mitchellh/consul/0.5.2_web_ui.zip > 0.5.2_web_ui.zip
+curl -k -fsSL https://dl.bintray.com/mitchellh/consul/0.5.2_SHA256SUMS > 0.5.2_SHA256SUMS
+curl -k -fsSL https://nssm.cc/release/nssm-2.24.zip > nssm-2.24.zip
 popd
