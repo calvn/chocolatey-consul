@@ -7,7 +7,7 @@ try {
   $nssmSourcePath = $(Join-Path $binariesPath "nssm-$nssmVersion.zip")
 
   # Consul related variables
-  $consulVersion = '0.5.2'
+  $consulVersion = '0.6.3'
   $sourcePath = $(Join-Path $binariesPath "$($consulVersion)_windows_386.zip")
   $sourcePathUI = $(Join-Path $binariesPath "$($consulVersion)_web_ui.zip")
 

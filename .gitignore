@@ -3,3 +3,4 @@
 
 *.nupkg
 .DS_Store
+binaries
