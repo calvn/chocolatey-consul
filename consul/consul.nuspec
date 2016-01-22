@@ -18,4 +18,7 @@ https://github.com/kohsuke/winsw/blob/master/LICENSE.txt</description>
     <copyright>HashiCorp 2014</copyright>
     <tags>consul service consul.io</tags>
   </metadata>
+  <files>
+    <file src="**" exclude="download.bat;README.md" />
+  </files>
 </package>
