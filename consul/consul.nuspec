@@ -17,6 +17,9 @@ https://github.com/kohsuke/winsw/blob/master/LICENSE.txt</description>
     <releaseNotes>Version 0.5.2</releaseNotes>
     <copyright>HashiCorp 2014</copyright>
     <tags>consul service consul.io</tags>
+    <dependencies>
+      <dependency id="NSSM" version="2.24.0" />
+    </dependencies>
   </metadata>
   <files>
     <file src="**" exclude="download.bat;README.md" />
