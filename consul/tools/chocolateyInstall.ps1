@@ -4,7 +4,11 @@ try {
 
   # Consul related variables
   $consulVersion = '0.6.3'
-  $sourcePath = $(Join-Path $binariesPath "$($consulVersion)_windows_amd64.zip")
+  $sourcePath = if (Get-ProcessorBits 32) {
+    $(Join-Path $binariesPath "$($consulVersion)_windows_386.zip")
+  } else {
+    $(Join-Path $binariesPath "$($consulVersion)_windows_amd64.zip")
+  }
   $sourcePathUI = $(Join-Path $binariesPath "$($consulVersion)_web_ui.zip")
 
   # Unzip and move Consul
