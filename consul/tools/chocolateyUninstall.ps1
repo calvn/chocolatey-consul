@@ -1,5 +1,3 @@
-$nssmVersion = '2.24'
-$toolsPath = (Split-Path -Parent $MyInvocation.MyCommand.Definition)
 $service = Get-Service "consul" -ErrorAction SilentlyContinue
 
 if ($service) {

@@ -12,8 +12,8 @@ build_script:
   - cpack consul.nuspec
 
 test_script:
-  - cinst consul -source %APPVEYOR_BUILD_FOLDER%\consul
-  - cuninst consul
+  - cinst consul -fdvy -source "'%cd%;https://chocolatey.org/api/v2/'"
+  - cuninst -fdvy consul
 
 artifacts:
   - path: '**\*.nupkg'

@@ -8,6 +8,8 @@
     <owners>mirthy, cleung2010</owners>
     <licenseUrl>https://github.com/hashicorp/consul/blob/master/LICENSE</licenseUrl>
     <projectUrl>http://www.consul.io</projectUrl>
+    <projectSourceUrl>https://github.com/hashicorp/consul</projectSourceUrl>
+    <packageSourceUrl>https://github.com/cleung2010/chocolatey-packages/tree/master/consul</packageSourceUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable.
 Uses the winsw service wrapper to run as a service, MIT license located here:
@@ -17,5 +19,11 @@ https://github.com/kohsuke/winsw/blob/master/LICENSE.txt</description>
     <releaseNotes>Version 0.5.2</releaseNotes>
     <copyright>HashiCorp 2014</copyright>
     <tags>consul service consul.io</tags>
+    <dependencies>
+      <dependency id="NSSM" version="2.24.0" />
+    </dependencies>
   </metadata>
+  <files>
+    <file src="**" exclude="download.bat;README.md" />
+  </files>
 </package>
