@@ -29,7 +29,7 @@ try {
 
   # Set up task scheduler for log rotation
   $logrotate = '%SYSTEMROOT%\System32\forfiles.exe /p \"%PROGRAMDATA%\consul\logs\" /s /m *.* /c \"cmd /c Del @path\" /d -7'
-  SchTasks.exe /Create /SC DAILY /TN ""ConsulLogrotate"" /TR ""$($logrotate)"" /ST 09:00 | Out-Null
+  SchTasks.exe /Create /SC DAILY /TN ""ConsulLogrotate"" /TR ""$($logrotate)"" /ST 09:00 /F | Out-Null
 
   # Set up task scheduler for log rotation. Only works for Powershell 4 or Server 2012R2 so this block can replace
   # using SchTasks.exe for registering services once machines have retired the older version of PS or upgraded to 2012R2
