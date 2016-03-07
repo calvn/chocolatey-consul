@@ -1,8 +1,8 @@
 try {
   $binariesPath = $(Join-Path (Split-Path -parent $MyInvocation.MyCommand.Definition) "..\binaries\")
   $toolsPath = (Split-Path -Parent $MyInvocation.MyCommand.Definition)
-  $shimsPath = $(Join-Path (Split-Path -parent $MyInvocation.MyCommand.Definition) "..\..\..\bin\")
-
+  $wrapperExe = "$env:ChocolateyInstall\bin\nssm.exe"
+  
   # Consul related variables
   $consulVersion = '0.6.3'
   $sourcePath = if (Get-ProcessorBits 32) {
@@ -54,14 +54,14 @@ try {
 
   Write-Host "Installing the consul service"
   # Install the service
-  & $(Join-Path $shimsPath "nssm.exe") install consul $(Join-Path $toolsPath "consul.exe") agent -config-dir=%PROGRAMDATA%\consul\config -data-dir=%PROGRAMDATA%\consul\data | Out-Null
-  & $(Join-Path $shimsPath "nssm.exe") set consul AppEnvironmentExtra GOMAXPROCS=$env:NUMBER_OF_PROCESSORS | Out-Null
-  & $(Join-Path $shimsPath "nssm.exe") set consul ObjectName NetworkService | Out-Null
-  & $(Join-Path $shimsPath "nssm.exe") set consul AppStdout "$env:PROGRAMDATA\consul\logs\consul-output.log" | Out-Null
-  & $(Join-Path $shimsPath "nssm.exe") set consul AppStderr "$env:PROGRAMDATA\consul\logs\consul-error.log" | Out-Null
-  & $(Join-Path $shimsPath "nssm.exe") set consul AppRotateBytes 10485760 | Out-Null
-  & $(Join-Path $shimsPath "nssm.exe") set consul AppRotateFiles 1 | Out-Null
-  & $(Join-Path $shimsPath "nssm.exe") set consul AppRotateOnline 1 | Out-Null
+  & $wrapperExe install consul $(Join-Path $toolsPath "consul.exe") agent -config-dir=%PROGRAMDATA%\consul\config -data-dir=%PROGRAMDATA%\consul\data | Out-Null
+  & $wrapperExe set consul AppEnvironmentExtra GOMAXPROCS=$env:NUMBER_OF_PROCESSORS | Out-Null
+  & $wrapperExe set consul ObjectName NetworkService | Out-Null
+  & $wrapperExe set consul AppStdout "$env:PROGRAMDATA\consul\logs\consul-output.log" | Out-Null
+  & $wrapperExe set consul AppStderr "$env:PROGRAMDATA\consul\logs\consul-error.log" | Out-Null
+  & $wrapperExe set consul AppRotateBytes 10485760 | Out-Null
+  & $wrapperExe set consul AppRotateFiles 1 | Out-Null
+  & $wrapperExe $shimsPath "nssm.exe") set consul AppRotateOnline 1 | Out-Null
 
   # Restart service on failure natively via Windows sc. There is a memory leak if service restart is performed via NSSM
   # The NSSM configuration will set the default behavior of NSSM to stop the service if
