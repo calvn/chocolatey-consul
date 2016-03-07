@@ -69,7 +69,7 @@ try {
   # The sc configuration will set Recovery under the Consul service properties such that a new instance will be started on failure,
   # spawning new nssm.exe and consul.exe processes. In short, nothing changed from a functionality perspective (the service will
   # still attempt to restart on failure) but this method kills the nssm.exe process thus avoiding memory hog.
-  & $(Join-Path $shimsPath "nssm.exe") set consul AppExit Default Exit | Out-Null
+  & $wrapperExe set consul AppExit Default Exit | Out-Null
   cmd.exe /c "sc failure consul reset= 0 actions= restart/60000" | Out-Null
 
   Write-ChocolateySuccess 'consul'
