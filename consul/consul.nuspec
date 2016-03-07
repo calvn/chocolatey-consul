@@ -12,8 +12,7 @@
     <packageSourceUrl>https://github.com/cleung2010/chocolatey-packages/tree/master/consul</packageSourceUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable.
-Uses the winsw service wrapper to run as a service, MIT license located here:
-https://github.com/kohsuke/winsw/blob/master/LICENSE.txt</description>
+Uses NSSM as the service wrapper. More info at: https://nssm.cc/</description>
     <summary>Consul is a tool for service discovery, monitoring and configuration.</summary>
     <iconUrl>https://cdn.rawgit.com/cleung2010/chocolatey-packages/f11a10757086560d99f94d563e20d0c64111b292/icons/consul.png</iconUrl>
     <releaseNotes>Version 0.6.3</releaseNotes>
