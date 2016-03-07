@@ -61,7 +61,7 @@ try {
   & $wrapperExe set consul AppStderr "$env:PROGRAMDATA\consul\logs\consul-error.log" | Out-Null
   & $wrapperExe set consul AppRotateBytes 10485760 | Out-Null
   & $wrapperExe set consul AppRotateFiles 1 | Out-Null
-  & $wrapperExe $shimsPath "nssm.exe") set consul AppRotateOnline 1 | Out-Null
+  & $wrapperExe set consul AppRotateOnline 1 | Out-Null
 
   # Restart service on failure natively via Windows sc. There is a memory leak if service restart is performed via NSSM
   # The NSSM configuration will set the default behavior of NSSM to stop the service if
