@@ -1,6 +1,7 @@
 try {
   $binariesPath = $(Join-Path (Split-Path -parent $MyInvocation.MyCommand.Definition) "..\binaries\")
   $toolsPath = (Split-Path -Parent $MyInvocation.MyCommand.Definition)
+  $shimsPath = $(Join-Path (Split-Path -parent $MyInvocation.MyCommand.Definition) "..\..\..\bin\")
 
   # Consul related variables
   $consulVersion = '0.6.3'
@@ -53,14 +54,14 @@ try {
 
   Write-Host "Installing the consul service"
   # Install the service
-  & nssm install consul $(Join-Path $toolsPath "consul.exe") agent -config-dir=%PROGRAMDATA%\consul\config -data-dir=%PROGRAMDATA%\consul\data | Out-Null
-  & nssm set consul AppEnvironmentExtra GOMAXPROCS=$env:NUMBER_OF_PROCESSORS | Out-Null
-  & nssm set consul ObjectName NetworkService | Out-Null
-  & nssm set consul AppStdout "$env:PROGRAMDATA\consul\logs\consul-output.log" | Out-Null
-  & nssm set consul AppStderr "$env:PROGRAMDATA\consul\logs\consul-error.log" | Out-Null
-  & nssm set consul AppRotateBytes 10485760 | Out-Null
-  & nssm set consul AppRotateFiles 1 | Out-Null
-  & nssm set consul AppRotateOnline 1 | Out-Null
+  & $(Join-Path $shimsPath "nssm.exe") install consul $(Join-Path $toolsPath "consul.exe") agent -config-dir=%PROGRAMDATA%\consul\config -data-dir=%PROGRAMDATA%\consul\data | Out-Null
+  & $(Join-Path $shimsPath "nssm.exe") set consul AppEnvironmentExtra GOMAXPROCS=$env:NUMBER_OF_PROCESSORS | Out-Null
+  & $(Join-Path $shimsPath "nssm.exe") set consul ObjectName NetworkService | Out-Null
+  & $(Join-Path $shimsPath "nssm.exe") set consul AppStdout "$env:PROGRAMDATA\consul\logs\consul-output.log" | Out-Null
+  & $(Join-Path $shimsPath "nssm.exe") set consul AppStderr "$env:PROGRAMDATA\consul\logs\consul-error.log" | Out-Null
+  & $(Join-Path $shimsPath "nssm.exe") set consul AppRotateBytes 10485760 | Out-Null
+  & $(Join-Path $shimsPath "nssm.exe") set consul AppRotateFiles 1 | Out-Null
+  & $(Join-Path $shimsPath "nssm.exe") set consul AppRotateOnline 1 | Out-Null
 
   # Restart service on failure natively via Windows sc. There is a memory leak if service restart is performed via NSSM
   # The NSSM configuration will set the default behavior of NSSM to stop the service if
@@ -68,7 +69,7 @@ try {
   # The sc configuration will set Recovery under the Consul service properties such that a new instance will be started on failure,
   # spawning new nssm.exe and consul.exe processes. In short, nothing changed from a functionality perspective (the service will
   # still attempt to restart on failure) but this method kills the nssm.exe process thus avoiding memory hog.
-  & nssm set consul AppExit Default Exit | Out-Null
+  & $(Join-Path $shimsPath "nssm.exe") set consul AppExit Default Exit | Out-Null
   cmd.exe /c "sc failure consul reset= 0 actions= restart/60000" | Out-Null
 
   Write-ChocolateySuccess 'consul'
