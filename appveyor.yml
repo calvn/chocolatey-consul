@@ -9,7 +9,7 @@ install:
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%\consul
   - download.bat
-  - cpack consul.nuspec
+  - choco pack consul.nuspec
 
 test_script:
   - cinst consul -fdvy -source "'%cd%;https://chocolatey.org/api/v2/'"
