@@ -1,4 +1,8 @@
-version: "{build}"
+version: 0.7.0.{build}
+
+environment:
+  TOKEN:
+    secure: 3sxpbbTFvPJlNQ7fwBDGM6EkuisTVEnALEK9Krtx5zAOvXdaIo+jCql4ms7cyFyj
 
 platform:
   - x64
@@ -8,6 +12,7 @@ install:
 
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%\consul
+  - $CONSUL_VERSION = $env:APPVEYOR_BUILD_VERSION -replace('\.[^.\\/]+$');
   - download.bat
   - choco pack consul.nuspec
 
@@ -15,7 +20,14 @@ test_script:
   - cinst consul -fdvy -source "'%cd%;https://chocolatey.org/api/v2/'"
   - cuninst -fdvy consul
 
+deploy_script:
+  - ps: >-
+      Write-Host $env:APPVEYOR_REPO_TAG;
+      if($env:APPVEYOR_REPO_BRANCH -eq 'master' -And $env:APPVEYOR_REPO_TAG -eq 'true') {
+        $version = $env:APPVEYOR_BUILD_VERSION -replace('\.[^.\\/]+$');
+        choco apiKey -k $env:TOKEN -source https://chocolatey.org/;
+        choco push consul.$version.nupkg
+      }
+
 artifacts:
   - path: '**\*.nupkg'
-
-deploy: off

@@ -9,7 +9,7 @@
     <licenseUrl>https://github.com/hashicorp/consul/blob/master/LICENSE</licenseUrl>
     <projectUrl>http://www.consul.io</projectUrl>
     <projectSourceUrl>https://github.com/hashicorp/consul</projectSourceUrl>
-    <packageSourceUrl>https://github.com/cleung2010/chocolatey-packages/tree/master/consul</packageSourceUrl>
+    <packageSourceUrl>https://github.com/calvn/consul-chocolatey</packageSourceUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable.
 Uses NSSM as the service wrapper. More info at: https://nssm.cc/</description>
