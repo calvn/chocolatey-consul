@@ -13,7 +13,7 @@ install:
 build_script:
   - ps: >-
       $env:CONSUL_VERSION = $env:APPVEYOR_BUILD_VERSION -replace('\.[^.\\/]+$');
-      download.bat
+      cmd /c download.bat;
       choco pack consul.nuspec
 
 test_script:
