@@ -11,7 +11,6 @@ install:
   - appveyor DownloadFile http://curl.haxx.se/ca/cacert.pem -FileName C:\cacert.pem
 
 build_script:
-  - ps: cd %APPVEYOR_BUILD_FOLDER%\consul
   - ps: $CONSUL_VERSION = $env:APPVEYOR_BUILD_VERSION -replace('\.[^.\\/]+$');
   - ps: download.bat
   - ps: choco pack consul.nuspec
