@@ -11,9 +11,10 @@ install:
   - appveyor DownloadFile http://curl.haxx.se/ca/cacert.pem -FileName C:\cacert.pem
 
 build_script:
-  - ps: $CONSUL_VERSION = $env:APPVEYOR_BUILD_VERSION -replace('\.[^.\\/]+$');
-  - cmd: download.bat
-  - ps: choco pack consul.nuspec
+  - ps: >-
+      $env:CONSUL_VERSION = $env:APPVEYOR_BUILD_VERSION -replace('\.[^.\\/]+$');
+      download.bat
+      choco pack consul.nuspec
 
 test_script:
   - ps: cinst consul -fdvy -source "'%cd%;https://chocolatey.org/api/v2/'"
