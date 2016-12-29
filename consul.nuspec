@@ -9,12 +9,12 @@
     <licenseUrl>https://github.com/hashicorp/consul/blob/master/LICENSE</licenseUrl>
     <projectUrl>http://www.consul.io</projectUrl>
     <projectSourceUrl>https://github.com/hashicorp/consul</projectSourceUrl>
-    <packageSourceUrl>https://github.com/calvn/consul-chocolatey</packageSourceUrl>
+    <packageSourceUrl>https://github.com/calvn/chocolatey-consul</packageSourceUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable.
 Uses NSSM as the service wrapper. More info at: https://nssm.cc/</description>
     <summary>Consul is a tool for service discovery, monitoring and configuration.</summary>
-    <iconUrl>https://cdn.rawgit.com/cleung2010/chocolatey-packages/f11a10757086560d99f94d563e20d0c64111b292/icons/consul.png</iconUrl>
+    <iconUrl>https://cdn.rawgit.com/calvn/chocolatey-consul/master/icons/consul.png</iconUrl>
     <releaseNotes>Version 0.7.0</releaseNotes>
     <copyright>HashiCorp 2014</copyright>
     <tags>consul service consul.io</tags>
@@ -23,6 +23,7 @@ Uses NSSM as the service wrapper. More info at: https://nssm.cc/</description>
     </dependencies>
   </metadata>
   <files>
-    <file src="**" exclude="download.bat;README.md" />
+    <file src="tools\**" target="tools" />
+    <file src="binaries\**" target="binaries" />
   </files>
 </package>

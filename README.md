@@ -1,1 +1,5 @@
-Chocolatey packages uploaded to chocolatey.org
+# chocolatey-consul
+
+Chocolatey package for Consul.
+
+Builds, tests, and deploys are done with AppVeyor.
