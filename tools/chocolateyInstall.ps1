@@ -9,7 +9,6 @@ $serviceConfigDirectory = "$serviceInstallationDirectory\config"
 $serviceUiDirectory = "$serviceInstallationDirectory\ui"
 $serviceDataDirectory = "$serviceInstallationDirectory\data"
 
-$bindAddress = "127.0.0.1"
 $extraArgs = ""
 
 # packageParameters -- https://github.com/chocolatey/choco/wiki/How-To-Parse-PackageParameters-Argument
