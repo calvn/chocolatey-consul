@@ -17,7 +17,7 @@ build_script:
       choco pack consul.nuspec
 
 test_script:
-  - ps: cinst consul -fdvy -source "'%cd%;https://chocolatey.org/api/v2/'"
+  - ps: cinst consul -fdvy -source '%cd%;http://chocolatey.org/api/v2/'
   - ps: cuninst -fdvy consul
 
 deploy_script:
