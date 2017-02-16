@@ -1,4 +1,4 @@
-version: 0.7.4.{build}
+version: 0.7.4.1.{build}
 
 environment:
   TOKEN:
@@ -12,13 +12,15 @@ install:
 
 build_script:
   - ps: >-
-      $env:CONSUL_VERSION = $env:APPVEYOR_BUILD_VERSION -replace('\.[^.\\/]+$');
+      $env:CONSUL_VERSION = ($env:APPVEYOR_BUILD_VERSION | ? {$_ -match('^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-rc\d+)?')} | select @{L="Matches";E={$matches[0]}}).matches;
       cmd /c download.bat;
       choco pack consul.nuspec
 
 test_script:
   - ps: cinst consul -fdvy -source "$pwd;http://chocolatey.org/api/v2/"
   - ps: cuninst -fdvy consul
+  - ps: cinst consul -fdvy -source "$pwd;http://chocolatey.org/api/v2/" -params '-bind=127.0.0.1'
+  - ps: cuninst -fdvy consul 
 
 deploy_script:
   - ps: >-
