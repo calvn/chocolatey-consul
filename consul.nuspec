@@ -11,8 +11,15 @@
     <projectSourceUrl>https://github.com/hashicorp/consul</projectSourceUrl>
     <packageSourceUrl>https://github.com/calvn/chocolatey-consul</packageSourceUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable.
-Uses NSSM as the service wrapper. More info at: https://nssm.cc/</description>
+    <description>
+Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable.
+Uses NSSM as the service wrapper. More info at: https://nssm.cc/
+
+#### Package Parameters
+The package parameters can be set - https://www.consul.io/docs/agent/options.html
+These parameters can be passed to the installer with the use of `-params`.
+For example: `-params '-config-file="%PROGRAMDATA%\consul\dsc-config\default.json"'`.
+    </description>
     <summary>Consul is a tool for service discovery, monitoring and configuration.</summary>
     <iconUrl>https://cdn.rawgit.com/calvn/chocolatey-consul/master/icons/consul.png</iconUrl>
     <releaseNotes>Version 0.7.4</releaseNotes>
