@@ -9,9 +9,6 @@ $serviceConfigDirectory = "$serviceInstallationDirectory\config"
 $serviceUiDirectory = "$serviceInstallationDirectory\ui"
 $serviceDataDirectory = "$serviceInstallationDirectory\data"
 
-$bindAddress = "127.0.0.1"
-$extraArgs = "-server -bootstrap-expect=1 -bind=$bindAddress"
-
 # packageParameters -- https://github.com/chocolatey/choco/wiki/How-To-Parse-PackageParameters-Argument
 # https://github.com/chocolatey/choco/issues/312#issuecomment-232772338
 $packageParameters = $env:chocolateyPackageParameters
@@ -84,7 +81,7 @@ if ($service) {
 
 Write-Host "Installing service: $serviceName"
 # Install the service
-& $wrapperExe install $serviceName $(Join-Path $toolsPath "consul.exe") "agent -ui-dir=$serviceUiDirectory -config-dir=$serviceConfigDirectory -data-dir=$serviceDataDirectory $extraArgs" | Out-Null
+& $wrapperExe install $serviceName $(Join-Path $toolsPath "consul.exe") "agent -ui-dir=$serviceUiDirectory -config-dir=$serviceConfigDirectory -data-dir=$serviceDataDirectory" | Out-Null
 & $wrapperExe set $serviceName AppEnvironmentExtra GOMAXPROCS=$env:NUMBER_OF_PROCESSORS | Out-Null
 & $wrapperExe set $serviceName ObjectName NetworkService | Out-Null
 & $wrapperExe set $serviceName AppStdout "$serviceLogDirectory\consul-output.log" | Out-Null
