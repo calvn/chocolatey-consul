@@ -10,7 +10,10 @@ $serviceUiDirectory = "$serviceInstallationDirectory\ui"
 $serviceDataDirectory = "$serviceInstallationDirectory\data"
 
 $bindAddress = "127.0.0.1"
-$extraArgs = "-server -bootstrap-expect=1 -bind=$bindAddress"
+$serverArgs = "-server -bootstrap-expect=1 -bind=$bindAddress"
+
+# Default to installing as a Server.
+$consulMode = "server"
 
 # packageParameters -- https://github.com/chocolatey/choco/wiki/How-To-Parse-PackageParameters-Argument
 # https://github.com/chocolatey/choco/issues/312#issuecomment-232772338
@@ -21,10 +24,30 @@ $match_pattern = "(?<key>(\w+))\s*=\s*(?<value>([`"'])?([\w- _\\:\.]+)([`"'])?)"
 if ($packageParameters -match $match_pattern ){
     $results = $packageParameters | Select-String $match_pattern -AllMatches
     $results.matches | ForEach-Object {
-        Set-Variable -Name $_.Groups['key'].Value.Trim() -Value $_.Groups['value'].Value.Trim()
+		$key = $_.Groups['key'].Value.Trim()
+		$value = $_.Groups['value'].Value.Trim()
+        Set-Variable -Name $key -Value $value
+		
+		# Enable visibility of detected parameters
+		Write-Host "Parameter supplied - $key,$value"
     }
 }
 
+# Determine whether to install Consul as a client or a server instance.
+switch ($consulMode) {
+	"server" {
+		Write-Host "Configuring Consul as a Server."
+	}
+	"client" {
+		Write-Host "Configuring Consul as a Client."
+		# Null the server related arguments
+		$serverArgs = ""
+	}
+	default {
+		throw "Unrecognised Consul mode: $consulMode"
+	}
+}
+	
 # Consul related variables
 $consulVersion = '0.7.4'
 $sourcePath = if (Get-ProcessorBits 32) {
@@ -84,7 +107,7 @@ if ($service) {
 
 Write-Host "Installing service: $serviceName"
 # Install the service
-& $wrapperExe install $serviceName $(Join-Path $toolsPath "consul.exe") "agent -ui-dir=$serviceUiDirectory -config-dir=$serviceConfigDirectory -data-dir=$serviceDataDirectory $extraArgs" | Out-Null
+& $wrapperExe install $serviceName $(Join-Path $toolsPath "consul.exe") "agent -ui-dir=$serviceUiDirectory -config-dir=$serviceConfigDirectory -data-dir=$serviceDataDirectory $serverArgs" | Out-Null
 & $wrapperExe set $serviceName AppEnvironmentExtra GOMAXPROCS=$env:NUMBER_OF_PROCESSORS | Out-Null
 & $wrapperExe set $serviceName ObjectName NetworkService | Out-Null
 & $wrapperExe set $serviceName AppStdout "$serviceLogDirectory\consul-output.log" | Out-Null
