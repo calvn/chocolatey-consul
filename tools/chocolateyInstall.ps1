@@ -16,7 +16,7 @@ if (-not ($packageParameters)) {
 }
 
 # Consul related variables
-$consulVersion = '0.8.1'
+$consulVersion = '0.8.2'
 $sourcePath = if (Get-ProcessorBits 32) {
   $(Join-Path $binariesPath "$($consulVersion)_windows_386.zip")
 } else {
