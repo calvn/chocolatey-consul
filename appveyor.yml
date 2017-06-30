@@ -1,6 +1,5 @@
 version: 0.8.5.{build}
 
-
 environment:
   TOKEN:
     secure: 3sxpbbTFvPJlNQ7fwBDGM6EkuisTVEnALEK9Krtx5zAOvXdaIo+jCql4ms7cyFyj
