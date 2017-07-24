@@ -6,7 +6,6 @@ $wrapperExe = "$env:ChocolateyInstall\bin\nssm.exe"
 $serviceInstallationDirectory = "$env:PROGRAMDATA\consul"
 $serviceLogDirectory = "$serviceInstallationDirectory\logs"
 $serviceConfigDirectory = "$serviceInstallationDirectory\config"
-$serviceUiDirectory = "$serviceInstallationDirectory\ui"
 $serviceDataDirectory = "$serviceInstallationDirectory\data"
 
 $packageParameters = $env:chocolateyPackageParameters
@@ -22,19 +21,15 @@ $sourcePath = if (Get-ProcessorBits 32) {
 } else {
   $(Join-Path $binariesPath "$($consulVersion)_windows_amd64.zip")
 }
-$sourcePathUI = $(Join-Path $binariesPath "$($consulVersion)_web_ui.zip")
 
 # Create Service Directories
 Write-Host "Creating $serviceLogDirectory"
 New-Item -ItemType directory -Path "$serviceLogDirectory" -ErrorAction SilentlyContinue | Out-Null
 Write-Host "Creating $serviceConfigDirectory"
 New-Item -ItemType directory -Path "$serviceConfigDirectory" -ErrorAction SilentlyContinue | Out-Null
-Write-Host "Creating $serviceUiDirectory"
-New-Item -ItemType directory -Path "$serviceUiDirectory" -ErrorAction SilentlyContinue | Out-Null
 
 # Unzip and move Consul
 Get-ChocolateyUnzip  $sourcePath "$toolsPath"
-Get-ChocolateyUnzip  $sourcePathUI "$serviceUiDirectory"
 
 # Create event log source
 # User -Force to avoid "A key at this path already exists" exception. Overwrite not an issue since key is not further modified
@@ -74,7 +69,7 @@ if ($service) {
 
 Write-Host "Installing service: $serviceName"
 # Install the service
-& $wrapperExe install $serviceName $(Join-Path $toolsPath "consul.exe") "agent -ui-dir=$serviceUiDirectory -config-dir=$serviceConfigDirectory -data-dir=$serviceDataDirectory $packageParameters" | Out-Null
+& $wrapperExe install $serviceName $(Join-Path $toolsPath "consul.exe") "agent -ui -config-dir=$serviceConfigDirectory -data-dir=$serviceDataDirectory $packageParameters" | Out-Null
 & $wrapperExe set $serviceName AppEnvironmentExtra GOMAXPROCS=$env:NUMBER_OF_PROCESSORS | Out-Null
 & $wrapperExe set $serviceName ObjectName NetworkService | Out-Null
 & $wrapperExe set $serviceName AppStdout "$serviceLogDirectory\consul-output.log" | Out-Null
