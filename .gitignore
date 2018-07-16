@@ -1,6 +1,8 @@
 *.cache
 *~
-
+*.bak
+*.sh
+*.orig
 *.nupkg
 .DS_Store
 binaries
