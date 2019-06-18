@@ -11,6 +11,7 @@ install:
   - appveyor DownloadFile http://curl.haxx.se/ca/cacert.pem -FileName C:\cacert.pem
 
 build_script:
+  - ps: choco upgrade chocolatey --version=0.10.15
   - ps: >-
       $env:CONSUL_VERSION = ($env:APPVEYOR_BUILD_VERSION | ? {$_ -match('^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-rc\d+)?')} | select @{L="Matches";E={$matches[0]}}).matches;
       cmd /c download.bat;
