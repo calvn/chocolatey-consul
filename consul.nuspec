@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>consul</id>
-    <version>1.7.2</version>
+    <version>1.7.3</version>
     <title>Consul</title>
     <authors>Mitchell Hashimoto, Armon Dadgar, HashiCorp</authors>
     <owners>mirthy, cleung2010</owners>
@@ -22,7 +22,7 @@ For example: `-params '-config-file="%PROGRAMDATA%\consul\dsc-config\default.jso
     </description>
     <summary>Consul is a tool for service discovery, monitoring and configuration.</summary>
     <iconUrl>https://cdn.rawgit.com/calvn/chocolatey-consul/master/icons/consul.png</iconUrl>
-    <releaseNotes>Version 1.7.2</releaseNotes>
+    <releaseNotes>Version 1.7.3</releaseNotes>
     <copyright>HashiCorp 2019</copyright>
     <tags>consul service consul.io</tags>
     <dependencies>
