@@ -1,4 +1,4 @@
-version: 1.8.2.{build}
+version: 1.8.3.{build}
 environment:
   TOKEN:
     secure: 3sxpbbTFvPJlNQ7fwBDGM6EkuisTVEnALEK9Krtx5zAOvXdaIo+jCql4ms7cyFyj
