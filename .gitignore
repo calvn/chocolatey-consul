@@ -6,3 +6,4 @@
 *.nupkg
 .DS_Store
 binaries
+/.vs
